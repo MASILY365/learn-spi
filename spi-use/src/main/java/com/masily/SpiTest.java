@@ -2,6 +2,7 @@ package com.masily;
 
 import com.masily.spi.Search;
 
+import java.util.Iterator;
 import java.util.ServiceLoader;
 
 /**
@@ -13,9 +14,19 @@ public class SpiTest {
     public static void main(String[] args) {
 
         ServiceLoader<Search> load = ServiceLoader.load(Search.class);
-        for (Search search : load) {
+
+        // foreach example
+        // for (Search search : load) {
+        //     search.doc("hello world");
+        // }
+
+        // iterator example
+        Iterator<Search> searches = load.iterator();
+        while (searches.hasNext()) {
+            Search search = searches.next();
             search.doc("hello world");
         }
+
     }
 
 }
